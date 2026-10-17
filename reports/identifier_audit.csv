@@ -1,0 +1,10 @@
+file,key,status,duplicate_key_rows,conflicting_keys
+customers.csv,customer_id,Checked,0,0
+products.csv,product_id,Checked,0,0
+sellers.csv,seller_id,Checked,0,0
+locations.csv,city_id,Checked,0,0
+orders.csv,order_id,Checked,0,0
+order_items.csv,order_item_id,Checked,0,0
+payments.csv,payment_id,Checked,0,0
+shipping.csv,shipment_id,Checked,0,0
+returns.csv,return_id,Checked,0,0

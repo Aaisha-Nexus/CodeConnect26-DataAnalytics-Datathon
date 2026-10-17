@@ -1,0 +1,19 @@
+
+# Competition dataset: keep raw CSVs out of Git
+data/*.csv
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Logs and temporary files
+logs/*
+!logs/.gitkeep
+*.log

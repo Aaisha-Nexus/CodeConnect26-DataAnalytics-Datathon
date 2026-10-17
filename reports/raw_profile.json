@@ -1,0 +1,210 @@
+{
+  "purpose": "Initial raw-data profiling; no source files modified",
+  "files_profiled": 9,
+  "files": [
+    {
+      "file": "customers.csv",
+      "row_count": 45000,
+      "columns": [
+        "customer_id",
+        "full_name",
+        "email",
+        "phone",
+        "gender",
+        "registration_date",
+        "city_id",
+        "birth_year"
+      ],
+      "column_count": 8,
+      "blank_values_by_column": {
+        "email": 1698,
+        "phone": 3599,
+        "gender": 2199,
+        "city_id": 2233,
+        "birth_year": 4600
+      },
+      "exact_duplicate_rows_after_first_occurrence": 0,
+      "duplicate_key_occurrences": {
+        "customer_id": 0
+      }
+    },
+    {
+      "file": "locations.csv",
+      "row_count": 650,
+      "columns": [
+        "city_id",
+        "city",
+        "province",
+        "region",
+        "latitude",
+        "longitude",
+        "population_tier"
+      ],
+      "column_count": 7,
+      "blank_values_by_column": {
+        "province": 25,
+        "latitude": 33,
+        "longitude": 31
+      },
+      "exact_duplicate_rows_after_first_occurrence": 0,
+      "duplicate_key_occurrences": {
+        "city_id": 0
+      }
+    },
+    {
+      "file": "order_items.csv",
+      "row_count": 315143,
+      "columns": [
+        "order_item_id",
+        "order_id",
+        "product_id",
+        "seller_id",
+        "quantity",
+        "unit_price",
+        "discount_amount"
+      ],
+      "column_count": 7,
+      "blank_values_by_column": {
+        "discount_amount": 31567
+      },
+      "exact_duplicate_rows_after_first_occurrence": 0,
+      "duplicate_key_occurrences": {
+        "order_item_id": 0
+      }
+    },
+    {
+      "file": "orders.csv",
+      "row_count": 163200,
+      "columns": [
+        "order_id",
+        "customer_id",
+        "order_date",
+        "order_status",
+        "ship_city_id",
+        "order_total",
+        "discount_code",
+        "channel"
+      ],
+      "column_count": 8,
+      "blank_values_by_column": {
+        "ship_city_id": 6516,
+        "discount_code": 112059
+      },
+      "exact_duplicate_rows_after_first_occurrence": 3200,
+      "duplicate_key_occurrences": {
+        "order_id": 3200
+      }
+    },
+    {
+      "file": "payments.csv",
+      "row_count": 168111,
+      "columns": [
+        "payment_id",
+        "order_id",
+        "payment_method",
+        "payment_status",
+        "amount",
+        "payment_date"
+      ],
+      "column_count": 6,
+      "blank_values_by_column": {
+        "payment_date": 5017
+      },
+      "exact_duplicate_rows_after_first_occurrence": 3296,
+      "duplicate_key_occurrences": {
+        "payment_id": 3296
+      }
+    },
+    {
+      "file": "products.csv",
+      "row_count": 3200,
+      "columns": [
+        "product_id",
+        "product_name",
+        "category",
+        "sub_category",
+        "brand",
+        "list_price",
+        "cost_price",
+        "weight_kg",
+        "seller_id"
+      ],
+      "column_count": 9,
+      "blank_values_by_column": {
+        "sub_category": 485,
+        "brand": 392,
+        "cost_price": 170,
+        "weight_kg": 296
+      },
+      "exact_duplicate_rows_after_first_occurrence": 0,
+      "duplicate_key_occurrences": {
+        "product_id": 0
+      }
+    },
+    {
+      "file": "returns.csv",
+      "row_count": 16048,
+      "columns": [
+        "return_id",
+        "order_item_id",
+        "return_date",
+        "return_reason",
+        "return_status",
+        "refund_amount"
+      ],
+      "column_count": 6,
+      "blank_values_by_column": {
+        "return_reason": 2390
+      },
+      "exact_duplicate_rows_after_first_occurrence": 0,
+      "duplicate_key_occurrences": {
+        "return_id": 0
+      }
+    },
+    {
+      "file": "sellers.csv",
+      "row_count": 420,
+      "columns": [
+        "seller_id",
+        "seller_name",
+        "join_date",
+        "seller_tier",
+        "city_id",
+        "rating"
+      ],
+      "column_count": 6,
+      "blank_values_by_column": {
+        "join_date": 34,
+        "seller_tier": 22,
+        "rating": 33
+      },
+      "exact_duplicate_rows_after_first_occurrence": 0,
+      "duplicate_key_occurrences": {
+        "seller_id": 0
+      }
+    },
+    {
+      "file": "shipping.csv",
+      "row_count": 151228,
+      "columns": [
+        "shipment_id",
+        "order_id",
+        "courier",
+        "shipped_date",
+        "delivered_date",
+        "shipping_fee",
+        "delivery_status"
+      ],
+      "column_count": 7,
+      "blank_values_by_column": {
+        "shipped_date": 5943,
+        "delivered_date": 18841,
+        "shipping_fee": 9145
+      },
+      "exact_duplicate_rows_after_first_occurrence": 0,
+      "duplicate_key_occurrences": {
+        "shipment_id": 0
+      }
+    }
+  ]
+}

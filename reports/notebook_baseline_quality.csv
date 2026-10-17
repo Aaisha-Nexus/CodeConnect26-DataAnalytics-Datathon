@@ -1,0 +1,10 @@
+file,rows,exact_duplicate_rows,columns_with_missing_or_blank,missing_values,blank_strings
+customers.csv,45000,0,5,14329,0
+locations.csv,650,0,3,89,0
+order_items.csv,315143,0,1,31567,0
+orders.csv,163200,3200,2,118575,0
+payments.csv,168111,3296,1,5017,0
+products.csv,3200,0,4,1343,0
+returns.csv,16048,0,1,2390,0
+sellers.csv,420,0,3,89,0
+shipping.csv,151228,0,3,33929,0
