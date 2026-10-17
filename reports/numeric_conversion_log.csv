@@ -1,0 +1,13 @@
+file,column,non_missing_before,unparseable_non_empty,converted_non_missing
+orders.csv,order_total,160000,0,160000
+order_items.csv,quantity,315143,965,314178
+order_items.csv,unit_price,315143,0,315143
+order_items.csv,discount_amount,283576,0,283576
+payments.csv,amount,164815,0,164815
+products.csv,cost_price,3030,0,3030
+products.csv,weight_kg,2904,0,2904
+returns.csv,refund_amount,16048,0,16048
+shipping.csv,shipping_fee,142083,0,142083
+sellers.csv,rating,387,0,387
+locations.csv,latitude,617,0,617
+locations.csv,longitude,619,0,619

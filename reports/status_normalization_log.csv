@@ -1,0 +1,3 @@
+file,column,values_changed
+orders.csv,order_status,304
+shipping.csv,delivery_status,567

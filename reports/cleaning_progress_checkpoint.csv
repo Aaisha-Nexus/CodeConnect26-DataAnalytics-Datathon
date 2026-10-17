@@ -1,0 +1,9 @@
+requirement,status,evidence
+Exact duplicate rows,Completed,duplicate_removal_log.csv
+Invalid dates,Quarantined,date rejects output
+Suspected sentinel values,Quarantined,sentinel_quarantine_log.csv
+Category/status standardization,Partially completed,category normalization reports
+Numeric invalid values,Review in progress,numeric_invalid_values_for_review.csv
+Missing values,Decisions still required,column-level cleaning decisions
+Duplicate entity resolution,Candidates need evidence review,duplicate entity candidates report
+Broken references,Audit completed; repairs pending,reference audit reports

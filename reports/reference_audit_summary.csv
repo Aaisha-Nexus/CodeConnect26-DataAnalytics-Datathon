@@ -1,0 +1,4 @@
+relationship,issue_count,decision
+orders → customers,321,Investigate unmatched customer IDs
+orders → locations,6388,Preserve missing city IDs; map to Unknown in warehouse
+order_items → products,932,Investigate unmatched product IDs

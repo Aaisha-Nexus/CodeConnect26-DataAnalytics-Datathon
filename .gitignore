@@ -17,3 +17,6 @@ __pycache__/
 logs/*
 !logs/.gitkeep
 *.log
+# Generated cleaning outputs: keep processed and rejected row-level CSVs local
+data/processed/*.csv
+data/rejected/*.csv

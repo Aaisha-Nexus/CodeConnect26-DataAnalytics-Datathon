@@ -1,0 +1,13 @@
+file,column,nonblank_values,values_changed,distinct_values_after
+orders.csv,order_status,158395,0,8
+orders.csv,discount_code,158395,108765,9
+payments.csv,payment_method,163748,73548,11
+payments.csv,payment_status,163748,0,8
+products.csv,category,3200,0,38
+products.csv,sub_category,3200,0,37
+products.csv,brand,3200,1147,17
+sellers.csv,seller_tier,416,0,4
+shipping.csv,courier,149286,0,13
+shipping.csv,delivery_status,149286,4879,10
+returns.csv,return_status,15912,0,5
+returns.csv,return_reason,15912,0,34

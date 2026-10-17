@@ -1,0 +1,11 @@
+source_file,rejection_file,rows,reason_codes
+orders.csv,date_rejects.csv,1605,order_date:INVALID_DATE | order_date:OUT_OF_ALLOWED_ORDER_PERIOD
+payments.csv,date_rejects.csv,1067,payment_date:INVALID_DATE
+returns.csv,date_rejects.csv,136,return_date:INVALID_DATE
+sellers.csv,date_rejects.csv,4,join_date:INVALID_DATE
+shipping.csv,date_rejects.csv,1942,delivered_date:INVALID_DATE | shipped_date:INVALID_DATE | shipped_date:INVALID_DATE;delivered_date:INVALID_DATE
+order_items.csv,invalid_order_items.csv,1588,MISSING_OR_UNPARSEABLE_QUANTITY | NEGATIVE_UNIT_PRICE | NON_POSITIVE_QUANTITY
+order_items.csv,sentinel_order_items.csv,305,SUSPECT_SENTINEL_VALUE:unit_price
+orders.csv,sentinel_orders.csv,145,SUSPECT_SENTINEL_VALUE:order_total
+payments.csv,sentinel_payments.csv,162,SUSPECT_SENTINEL_VALUE:amount
+shipping.csv,sentinel_shipping.csv,164,SUSPECT_SENTINEL_VALUE:shipping_fee

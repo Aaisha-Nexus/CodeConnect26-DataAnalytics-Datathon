@@ -1,0 +1,9 @@
+file,column,sentinel_value,matching_records,maximum_value
+orders.csv,order_total,9999999,145,9999999.0
+order_items.csv,unit_price,9999999,305,9999999.0
+order_items.csv,discount_amount,9999999,0,163062.0
+payments.csv,amount,9999999,162,9999999.0
+returns.csv,refund_amount,9999999,0,250592.0
+shipping.csv,shipping_fee,9999999,164,9999999.0
+products.csv,cost_price,9999999,0,83205.0
+products.csv,weight_kg,9999999,0,629.0

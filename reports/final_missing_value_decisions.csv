@@ -1,0 +1,24 @@
+file,column,documented_action,final_decision,missing_values_retained,business_reason
+customers.csv,email,Retain missing,Retained as null; unresolved or optional; no imputation,1698,Contact detail is optional for analysis; do not invent it.
+customers.csv,phone,Retain missing,Retained as null; unresolved or optional; no imputation,3599,Contact detail is optional for analysis; do not invent it.
+customers.csv,gender,Flag as Unknown,Applied documented value rule; no nulls remain,0,Avoid assigning an unsupported demographic value.
+customers.csv,city_id,Investigate reference; otherwise Unknown,Retained as null; unresolved or optional; no imputation,2233,Customer geography is unavailable unless a valid mapping exists.
+customers.csv,birth_year,Retain missing; flag for demographic analysis,Retained as null; unresolved or optional; no imputation,4600,Do not infer age without reliable evidence.
+locations.csv,province,Investigate; otherwise Unknown,Retained as null; unresolved or optional; no imputation,25,Do not infer province from city name alone.
+locations.csv,latitude,Retain missing unless reliable mapping exists,Retained as null; unresolved or optional; no imputation,33,Do not fabricate coordinates.
+locations.csv,longitude,Retain missing unless reliable mapping exists,Retained as null; unresolved or optional; no imputation,31,Do not fabricate coordinates.
+order_items.csv,discount_amount,Investigate numeric meaning; then resolve,Retained as null; unresolved or optional; no imputation,31364,"Missing may mean no discount, but confirm against order totals and business rules before imputing."
+orders.csv,discount_code,Normalize to no discount,Applied documented value rule; no nulls remain,0,The challenge explicitly states that an empty code means no discount.
+orders.csv,ship_city_id,Investigate reference; otherwise Unknown,Retained as null; unresolved or optional; no imputation,6322,Shipping geography should not be guessed.
+payments.csv,payment_date,Retain missing; investigate payment status,Retained as null; unresolved or optional; no imputation,4924,A missing date does not establish when payment occurred.
+products.csv,sub_category,Flag as Unknown,Applied documented value rule; no nulls remain,0,Preserve the product while acknowledging missing classification.
+products.csv,brand,Flag as Unknown,Applied documented value rule; no nulls remain,0,Do not invent a brand.
+products.csv,weight_kg,Retain missing; flag for shipping analysis,Retained as null; unresolved or optional; no imputation,296,Do not invent product weight.
+products.csv,cost_price,Retain missing; flag for margin calculations,Retained as null; unresolved or optional; no imputation,170,Missing cost must not be silently treated as zero.
+returns.csv,return_reason,Flag as Unknown,Applied documented value rule; no nulls remain,0,A valid return can exist without a recorded reason.
+sellers.csv,join_date,Repair if supported; otherwise quarantine or retain as unresolved,Retained as null; unresolved or optional; no imputation,34,Seller tenure cannot be calculated reliably from an invalid date.
+sellers.csv,rating,Retain missing; flag for seller scoring,Retained as null; unresolved or optional; no imputation,32,Do not assume a missing rating is zero.
+sellers.csv,seller_tier,Flag as Unknown,Applied documented value rule; no nulls remain,0,Do not assign a tier without a supported rule.
+shipping.csv,shipped_date,Investigate shipping status; retain or quarantine if invalid,Retained as null; unresolved or optional; no imputation,5907,Missing shipment date may be legitimate for unshipped orders.
+shipping.csv,delivered_date,Investigate shipping status; retain or quarantine if invalid,Retained as null; unresolved or optional; no imputation,18718,Missing delivery date may mean the order is not yet delivered.
+shipping.csv,shipping_fee,Investigate against order/shipment data before imputation,Retained as null; unresolved or optional; no imputation,9033,"Shipping is a courier charge per order, not per order line."

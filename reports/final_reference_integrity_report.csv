@@ -1,0 +1,11 @@
+relationship,rows_checked,missing_references,valid_references,references_to_quarantined_parent,formatting_mismatch_only,true_broken_references,handling
+customers.csv.city_id->locations.csv.city_id,45000,2233,0,0,42767,0,Retained and reported; no unsupported ID mapping
+sellers.csv.city_id->locations.csv.city_id,416,0,416,0,0,0,Retained and reported; no unsupported ID mapping
+orders.csv.customer_id->customers.csv.customer_id,158250,0,157932,0,0,318,Retained and reported; no unsupported ID mapping
+orders.csv.ship_city_id->locations.csv.city_id,158250,6322,0,0,151928,0,Retained and reported; no unsupported ID mapping
+order_items.csv.order_id->orders.csv.order_id,313250,0,309785,3465,0,0,Retained and reported; no unsupported ID mapping
+order_items.csv.product_id->products.csv.product_id,313250,0,312325,0,0,925,Retained and reported; no unsupported ID mapping
+order_items.csv.seller_id->sellers.csv.seller_id,313250,0,312308,942,0,0,Retained and reported; no unsupported ID mapping
+payments.csv.order_id->orders.csv.order_id,163586,0,161805,1781,0,0,Retained and reported; no unsupported ID mapping
+shipping.csv.order_id->orders.csv.order_id,149122,0,147477,1645,0,0,Retained and reported; no unsupported ID mapping
+returns.csv.order_item_id->order_items.csv.order_item_id,15912,0,15670,104,0,138,Retained and reported; no unsupported ID mapping

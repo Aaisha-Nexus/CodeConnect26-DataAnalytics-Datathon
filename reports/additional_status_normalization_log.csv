@@ -1,0 +1,4 @@
+file,column,values_changed
+shipping.csv,delivery_status,7093
+returns.csv,return_status,990
+payments.csv,payment_status,10040

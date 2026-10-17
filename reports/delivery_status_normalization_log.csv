@@ -1,0 +1,2 @@
+file,column,values_changed,mapping_applied
+shipping.csv,delivery_status,7731,Deliverd -> Delivered; Return To Seller -> Returned To Seller

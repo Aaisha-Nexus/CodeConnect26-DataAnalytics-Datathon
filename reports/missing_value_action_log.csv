@@ -1,0 +1,7 @@
+file,column,rule,rows_changed_this_run,missing_after
+customers.csv,gender,Missing descriptive category = Unknown,0,0
+products.csv,sub_category,Missing descriptive category = Unknown,0,0
+products.csv,brand,Missing descriptive category = Unknown,0,0
+returns.csv,return_reason,Missing descriptive category = Unknown,0,0
+sellers.csv,seller_tier,Missing descriptive category = Unknown,0,0
+orders.csv,discount_code,Blank means no discount (challenge specification),0,0

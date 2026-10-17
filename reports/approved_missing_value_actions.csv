@@ -1,0 +1,7 @@
+file,column,rule,rows_affected
+orders.csv,discount_code,Blank means no discount,219742
+customers.csv,gender,Label missing descriptive category as Unknown,2199
+products.csv,sub_category,Label missing descriptive category as Unknown,485
+products.csv,brand,Label missing descriptive category as Unknown,392
+returns.csv,return_reason,Label missing descriptive category as Unknown,2390
+sellers.csv,seller_tier,Label missing descriptive category as Unknown,22

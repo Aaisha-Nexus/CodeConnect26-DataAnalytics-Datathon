@@ -1,0 +1,5 @@
+issue,decision,business_reason,status
+Exact duplicate rows,Keep first identical row,Exact copies do not represent additional distinct records,Completed
+Missing values,Decide per column after investigation,Missing fields have different business meanings,Investigation required
+Invalid dates,Repair with supporting evidence or quarantine,Invalid dates can distort reporting and time analysis,Investigation required
+Broken references,Map to Unknown or quarantine using a documented rule,Preserve referential integrity in the warehouse,Not started

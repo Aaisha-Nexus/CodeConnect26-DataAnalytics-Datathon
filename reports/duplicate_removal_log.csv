@@ -1,0 +1,10 @@
+file,rows_before,exact_duplicates_removed,rows_after,rows_accounted_for
+customers.csv,45000,0,45000,45000
+locations.csv,650,0,650,650
+order_items.csv,315143,0,315143,315143
+orders.csv,163200,3200,160000,163200
+payments.csv,168111,3296,164815,168111
+products.csv,3200,0,3200,3200
+returns.csv,16048,0,16048,16048
+sellers.csv,420,0,420,420
+shipping.csv,151228,0,151228,151228

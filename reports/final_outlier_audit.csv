@@ -1,0 +1,15 @@
+file,column,non_missing_values,negative_values_flagged,minimum,maximum,iqr_lower_bound,iqr_upper_bound,statistical_outlier_count,handling
+customers.csv,birth_year,40400,0,1900.0,2030.0,1966.5,2018.5,236,Statistical extremes retained; no business evidence supports correction or removal
+locations.csv,latitude,617,0,23.3071,72.9616,20.55745,39.77065,6,Statistical extremes retained; no business evidence supports correction or removal
+locations.csv,longitude,619,0,28.2568,79.0002,62.541550000000015,79.44154999999999,8,Statistical extremes retained; no business evidence supports correction or removal
+order_items.csv,quantity,313250,0,1.0,500.0,-0.5,3.5,20029,Statistical extremes retained; no business evidence supports correction or removal
+order_items.csv,unit_price,313250,0,0.0,3801600.0,-2280.5,6211.5,25979,Statistical extremes retained; no business evidence supports correction or removal
+order_items.csv,discount_amount,281886,0,0.0,163062.0,-280.5,467.5,46003,Statistical extremes retained; no business evidence supports correction or removal
+orders.csv,order_total,158250,163,-78112.0,326150.0,-9012.0,21036.0,12184,Statistical extremes retained; no business evidence supports correction or removal
+payments.csv,amount,163586,656,-143168.0,326150.0,-8912.5,20499.5,12717,Statistical extremes retained; no business evidence supports correction or removal
+products.csv,list_price,3200,4,-3810.0,9999999.0,-2300.0,6340.0,308,Statistical extremes retained; no business evidence supports correction or removal
+products.csv,cost_price,3030,0,82.0,83205.0,-1514.125,4016.875,347,Statistical extremes retained; no business evidence supports correction or removal
+products.csv,weight_kg,2904,10,-1.0,629.0,-1.665,3.895,154,Statistical extremes retained; no business evidence supports correction or removal
+returns.csv,refund_amount,15912,0,0.0,250592.0,-3713.5,8698.5,1365,Statistical extremes retained; no business evidence supports correction or removal
+sellers.csv,rating,384,0,0.0,11.0,2.65,5.450000000000001,22,Statistical extremes retained; no business evidence supports correction or removal
+shipping.csv,shipping_fee,140089,155,-2577.0,6127.0,-244.0,1188.0,9212,Statistical extremes retained; no business evidence supports correction or removal

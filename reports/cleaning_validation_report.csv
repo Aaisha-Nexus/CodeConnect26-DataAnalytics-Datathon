@@ -1,0 +1,11 @@
+check,status,details
+row_reconciliation,PASS,9/9 tables reconcile
+exact_duplicate_rows,PASS,0 exact duplicate rows remain
+primary_key_duplicates,PASS,0 duplicate primary key occurrences remain
+numeric_parse,PASS,0 unparseable non-null numeric values
+referential_integrity,REVIEW,1381 broken and 7937 references to quarantined parents; 9318 row-level exceptions exported
+reference_classification_reconciliation,PASS,"10 relationships partition into missing, valid, formatting-only, quarantined-parent, or broken references"
+date_review,REVIEW,1731 invalid or ambiguous customer registration dates flagged
+reason_coded_rejections,PASS,7118 unique quarantined rows in consolidated reject output
+category_alias_mapping,PASS,0 rows remain under explicitly mapped source labels
+negative_value_flags,PASS,988 current negative values flagged; statistical outliers retained and summarized

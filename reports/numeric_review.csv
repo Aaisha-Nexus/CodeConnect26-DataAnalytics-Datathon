@@ -1,0 +1,11 @@
+file,column,nonempty_values,unparseable_values,negative_values,minimum,maximum
+orders.csv,order_total,158395,0,163,-78112.0,9999999.0
+order_items.csv,quantity,314178,0,307,-6.0,500.0
+order_items.csv,unit_price,315143,0,316,-41270.0,9999999.0
+order_items.csv,discount_amount,283576,0,0,0.0,163062.0
+payments.csv,amount,163748,0,656,-143168.0,9999999.0
+products.csv,cost_price,3030,0,0,82.0,83205.0
+products.csv,weight_kg,2904,0,10,-1.0,629.0
+returns.csv,refund_amount,15912,0,0,0.0,250592.0
+shipping.csv,shipping_fee,140253,0,155,-2577.0,9999999.0
+sellers.csv,rating,384,0,0,0.0,11.0

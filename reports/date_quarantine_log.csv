@@ -1,0 +1,6 @@
+file,rows_before,rows_quarantined,rows_after,reconciles
+orders.csv,160000,1605,158395,True
+payments.csv,164815,1067,163748,True
+shipping.csv,151228,1942,149286,True
+returns.csv,16048,136,15912,True
+sellers.csv,420,4,416,True

@@ -1,0 +1,7 @@
+relationship,rows_checked,missing_keys,unmatched_keys,valid_keys
+orders.customer_id,158250,0,318,157932
+orders.ship_city_id,158250,6322,151928,0
+order_items.order_id,313250,0,3465,309785
+order_items.product_id,313250,0,925,312325
+payments.order_id,163586,0,1781,161805
+shipping.order_id,149122,0,1645,147477

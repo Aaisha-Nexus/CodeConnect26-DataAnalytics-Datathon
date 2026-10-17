@@ -1,0 +1,24 @@
+file,column,proposed_action,business_reason,status
+customers.csv,email,Retain missing,Contact detail is optional for analysis; do not invent it.,Pending validation
+customers.csv,phone,Retain missing,Contact detail is optional for analysis; do not invent it.,Pending validation
+customers.csv,gender,Flag as Unknown,Avoid assigning an unsupported demographic value.,Pending validation
+customers.csv,city_id,Investigate reference; otherwise Unknown,Customer geography is unavailable unless a valid mapping exists.,Pending validation
+customers.csv,birth_year,Retain missing; flag for demographic analysis,Do not infer age without reliable evidence.,Pending validation
+locations.csv,province,Investigate; otherwise Unknown,Do not infer province from city name alone.,Pending validation
+locations.csv,latitude,Retain missing unless reliable mapping exists,Do not fabricate coordinates.,Pending validation
+locations.csv,longitude,Retain missing unless reliable mapping exists,Do not fabricate coordinates.,Pending validation
+order_items.csv,discount_amount,Investigate numeric meaning; then resolve,"Missing may mean no discount, but confirm against order totals and business rules before imputing.",Pending validation
+orders.csv,discount_code,Normalize to no discount,The challenge explicitly states that an empty code means no discount.,Pending validation
+orders.csv,ship_city_id,Investigate reference; otherwise Unknown,Shipping geography should not be guessed.,Pending validation
+payments.csv,payment_date,Retain missing; investigate payment status,A missing date does not establish when payment occurred.,Pending validation
+products.csv,sub_category,Flag as Unknown,Preserve the product while acknowledging missing classification.,Pending validation
+products.csv,brand,Flag as Unknown,Do not invent a brand.,Pending validation
+products.csv,weight_kg,Retain missing; flag for shipping analysis,Do not invent product weight.,Pending validation
+products.csv,cost_price,Retain missing; flag for margin calculations,Missing cost must not be silently treated as zero.,Pending validation
+returns.csv,return_reason,Flag as Unknown,A valid return can exist without a recorded reason.,Pending validation
+sellers.csv,join_date,Repair if supported; otherwise quarantine or retain as unresolved,Seller tenure cannot be calculated reliably from an invalid date.,Pending validation
+sellers.csv,rating,Retain missing; flag for seller scoring,Do not assume a missing rating is zero.,Pending validation
+sellers.csv,seller_tier,Flag as Unknown,Do not assign a tier without a supported rule.,Pending validation
+shipping.csv,shipped_date,Investigate shipping status; retain or quarantine if invalid,Missing shipment date may be legitimate for unshipped orders.,Pending validation
+shipping.csv,delivered_date,Investigate shipping status; retain or quarantine if invalid,Missing delivery date may mean the order is not yet delivered.,Pending validation
+shipping.csv,shipping_fee,Investigate against order/shipment data before imputation,"Shipping is a courier charge per order, not per order line.",Pending validation

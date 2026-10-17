@@ -1,0 +1,10 @@
+file,original_rows,retained_rows,quarantined_rows,exact_duplicate_rows_removed,reconciled_rows,row_reconciliation_pass,columns,missing_cells_retained,exact_duplicates_retained,unique_key_duplicates
+customers.csv,45000,45000,0,0,45000,True,8,12130,0,0
+locations.csv,650,650,0,0,650,True,7,89,0,0
+orders.csv,163200,158250,1750,3200,163200,True,8,6322,0,0
+order_items.csv,315143,313250,1893,0,315143,True,7,31364,0,0
+payments.csv,168111,163586,1229,3296,168111,True,6,4924,0,0
+products.csv,3200,3200,0,0,3200,True,9,466,0,0
+returns.csv,16048,15912,136,0,16048,True,6,0,0,0
+sellers.csv,420,416,4,0,420,True,6,66,0,0
+shipping.csv,151228,149122,2106,0,151228,True,7,33658,0,0

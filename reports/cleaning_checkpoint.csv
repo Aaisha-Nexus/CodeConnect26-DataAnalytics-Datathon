@@ -1,0 +1,10 @@
+file,rows,columns,exact_duplicates_remaining,missing_cells_remaining
+customers.csv,45000,8,0,12130
+locations.csv,650,7,0,89
+order_items.csv,315143,7,0,32532
+orders.csv,160000,8,0,6388
+payments.csv,164815,6,0,4927
+products.csv,3200,9,0,466
+returns.csv,16048,6,0,0
+sellers.csv,420,6,0,67
+shipping.csv,151228,7,0,33929

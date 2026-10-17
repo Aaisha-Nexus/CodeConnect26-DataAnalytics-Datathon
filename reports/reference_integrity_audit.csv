@@ -1,0 +1,8 @@
+relationship,status,missing_reference_count,invalid_reference_count,rows_checked
+orders.customer_id,Audited,0,321,160000
+orders.ship_city_id,Audited,6388,153612,160000
+order_items.order_id,Audited,0,0,315143
+order_items.product_id,Audited,0,932,315143
+order_items.seller_id,Audited,0,0,315143
+payments.order_id,Audited,0,0,164815
+shipping.order_id,Audited,0,0,151228

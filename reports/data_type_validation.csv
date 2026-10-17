@@ -1,0 +1,28 @@
+file,column,target_type,rows,null_before,unparseable_non_null,null_after,dtype_written
+customers.csv,birth_year,numeric,45000,4600,0,4600,Float64
+customers.csv,registration_date,date (ISO text in CSV),45000,0,1731,0,ISO-8601 text plus flagged unresolved values
+customers.csv,city_id,nullable integer,45000,2233,0,2233,Int64
+customers.csv,birth_year,nullable integer,45000,4600,0,4600,Int64
+locations.csv,latitude,numeric,650,33,0,33,Float64
+locations.csv,longitude,numeric,650,31,0,31,Float64
+locations.csv,city_id,nullable integer,650,0,0,0,Int64
+orders.csv,order_total,numeric,158250,0,0,0,Int64
+orders.csv,order_date,date (ISO text in CSV),158250,0,0,0,ISO-8601 text plus flagged unresolved values
+orders.csv,ship_city_id,nullable integer,158250,6322,0,6322,Int64
+order_items.csv,quantity,numeric,313250,0,0,0,Int64
+order_items.csv,unit_price,numeric,313250,0,0,0,Float64
+order_items.csv,discount_amount,numeric,313250,31364,0,31364,Float64
+order_items.csv,quantity,nullable integer,313250,0,0,0,Int64
+payments.csv,amount,numeric,163586,0,0,0,Int64
+payments.csv,payment_date,date (ISO text in CSV),163586,4924,0,4924,ISO-8601 text plus flagged unresolved values
+products.csv,list_price,numeric,3200,0,0,0,Int64
+products.csv,cost_price,numeric,3200,170,0,170,Float64
+products.csv,weight_kg,numeric,3200,296,0,296,Float64
+returns.csv,refund_amount,numeric,15912,0,0,0,Int64
+returns.csv,return_date,date (ISO text in CSV),15912,0,0,0,ISO-8601 text plus flagged unresolved values
+sellers.csv,rating,numeric,416,32,0,32,Float64
+sellers.csv,join_date,date (ISO text in CSV),416,34,0,34,ISO-8601 text plus flagged unresolved values
+sellers.csv,city_id,nullable integer,416,0,0,0,Int64
+shipping.csv,shipping_fee,numeric,149122,9033,0,9033,Float64
+shipping.csv,shipped_date,date (ISO text in CSV),149122,5907,0,5907,ISO-8601 text plus flagged unresolved values
+shipping.csv,delivered_date,date (ISO text in CSV),149122,18718,0,18718,ISO-8601 text plus flagged unresolved values

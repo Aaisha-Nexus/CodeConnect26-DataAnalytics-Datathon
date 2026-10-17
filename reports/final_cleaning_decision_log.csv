@@ -1,0 +1,9 @@
+category,status,evidence_and_decision
+Missing values,partially implemented,Documented category/no-discount actions applied; optional and key/measure nulls retained and reported.
+Exact duplicate records,implemented,Existing duplicate-removal counts reconciled with current retained and quarantined rows.
+Duplicate customers/products under different IDs,partially implemented,Candidate report retained; no entity merged without independent identity evidence.
+Inconsistent categories,implemented,"Existing normalization plus explicit, preserved alias mapping; semantically distinct labels remain separate."
+Invalid dates,partially implemented,Audited date columns quarantined; registration-date invalid/ambiguous values are flagged for review.
+Incorrect data types,partially implemented,Numeric values and nullable IDs converted; date columns remain ISO text in CSV and unresolved dates are flagged.
+Outliers,partially implemented,Known sentinel and invalid quantities quarantined; other negative/statistical extremes flagged and retained.
+Broken references,partially implemented,Final references checked against retained and quarantined parent IDs; unresolved IDs retained and reported.

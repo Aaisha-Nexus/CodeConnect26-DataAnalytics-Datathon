@@ -1,0 +1,22 @@
+file,column,action,rows_changed
+orders.csv,order_status,Trim/normalize whitespace,903
+orders.csv,discount_code,Trim/normalize whitespace,2057
+orders.csv,order_status,Standardize category labels,31368
+orders.csv,channel,Standardize category labels,17444
+orders.csv,discount_code,Standardize category labels,48139
+payments.csv,payment_method,Trim/normalize whitespace,5263
+payments.csv,payment_status,Trim/normalize whitespace,742
+payments.csv,payment_method,Standardize category labels,49726
+payments.csv,payment_status,Standardize category labels,21126
+products.csv,product_name,Trim/normalize whitespace,123
+products.csv,category,Trim/normalize whitespace,641
+products.csv,category,Standardize category labels,860
+returns.csv,return_status,Standardize category labels,2832
+returns.csv,return_reason,Standardize category labels,13532
+sellers.csv,seller_name,Trim/normalize whitespace,15
+sellers.csv,seller_tier,Trim/normalize whitespace,5
+sellers.csv,seller_tier,Standardize category labels,64
+shipping.csv,courier,Standardize category labels,81326
+shipping.csv,delivery_status,Standardize category labels,23137
+customers.csv,full_name,Trim/normalize whitespace,2275
+customers.csv,gender,Standardize category labels,8548
