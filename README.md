@@ -1,6 +1,4 @@
-from pathlib import Path
 
-readme = r'''<div align="center">
 
 # NexusMart Data Analytics & Engineering Pipeline
 
