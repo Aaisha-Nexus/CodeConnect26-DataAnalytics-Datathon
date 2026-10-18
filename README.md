@@ -445,6 +445,4 @@ Computer Science student · University of Karachi (UBIT)
 
 </div>
 '''
-path = "/mnt/data/README_NexusMart_CodeConnect26.md"
-Path(path).write_text(readme, encoding="utf-8")
-print(f"Created {path} ({len(readme.splitlines())} lines, {len(readme):,} characters)")
+
