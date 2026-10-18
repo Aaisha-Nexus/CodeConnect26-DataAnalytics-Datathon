@@ -1,45 +1,37 @@
-# NexusMart Data Analytics - Cleaning Milestone
+# NexusMart Data Analytics — CodeConnect’26
 
 ## Project overview
 
-This repository prepares the CodeConnect'26 NexusMart retail exports for reliable analytics. The datasets cover customers, products, sellers, locations, orders, order items, payments, shipping, and returns. Monetary values are in PKR. The immediate goal is a documented, quality-checked flat dataset ready for SQL Server landing and staging.
-
-The challenge requires core cleaning in Python rather than Power Query. The star schema, Airflow orchestration, and Power BI dashboard are future milestones and are not implemented here.
+This repository is the official CodeConnect’26 NexusMart Datathon submission. It contains the Python data profiling and cleaning work, SQL Server staging and warehouse scripts, and the Airflow DAG used to validate the local warehouse. Dataset values are in PKR. The next major milestone is the Power BI dashboard; no completed dashboard is included here.
 
 ## Repository map
 
 ```text
 notebooks/
-  01_data_profiling_cleaning.ipynb   Executed raw profiling and investigation evidence
-  02_data_cleaning_validation.ipynb  Read-only final milestone summary
+  01_data_profiling_cleaning.ipynb   Raw profiling and cleaning investigation
+  02_data_cleaning_validation.ipynb  Read-only final cleaning summary
 src/
-  profile_raw_data.py                Raw CSV profiler; writes reports/raw_profile.json
-  finalize_cleaning.py               Finalizes already prepared processed files in place
+  profile_raw_data.py                Raw CSV profiler
+  finalize_cleaning.py               Finalizes prepared processed outputs
+  load_staging_data.py               Guarded batch loader for SQL Server staging
+sql/                                 Database, staging, dimensions, fact, and checks
+dags/
+  nexusmart_datathon_pipeline.py     Airflow warehouse validation DAG
+airflow/                             Astro runtime Dockerfile and Python dependency
 data/
-  *.csv                              Supplied raw exports (never modified by cleaning)
-  processed/*.csv                   Retained, cleaned rows for staging
-  rejected/*.csv                     Quarantined records and row-level review flags
-reports/                              Baselines, mappings, decisions, and quality audits
+  *.csv                              Supplied raw exports (local; excluded from Git)
+  processed/*.csv                    Retained rows (local; excluded from Git)
+  rejected/*.csv                     Quarantines/review flags (local; excluded from Git)
+reports/                              Compact cleaning reports and star-schema diagram
 ```
 
-## Cleaning workflow and evidence
+## Cleaning and data quality
 
-The original profiling notebook and profiler inspect the raw exports. Exact duplicate counts are recorded before later removal from the processed path. The remaining history is represented by the processed/rejected outputs and audit reports: missing-value decisions, date review and quarantine, category/status normalization, numeric conversion and anomaly review, sentinel quarantine, invalid order-item quarantine, and reference-integrity checks. The finalization script then applies the documented remaining alias/type rules and writes consolidated validation reports.
+Python-based profiling and cleaning covered the nine source tables: customers, locations, orders, order items, payments, products, returns, sellers, and shipping. Raw exports were preserved. Processed datasets retain accepted rows; reason-coded quarantine outputs hold excluded rows, with flags separated from full-row quarantines. The workflow includes row reconciliation, category/date/numeric audits, and reference-integrity checks.
 
-**Reproducibility limitation:** the current repository does not contain all of the historical transformation cells or scripts that produced the earlier date, sentinel, and invalid-item quarantine files. The existing `data/processed/` and `data/rejected/` files are the continuation state. Neither the read-only milestone notebook nor `src/finalize_cleaning.py` rebuilds the full processed dataset from raw CSVs. Do not treat the finalizer as a raw-to-clean pipeline.
+The verified cleaning report records 9/9 tables reconciled; zero remaining exact duplicate rows and duplicate primary-key occurrences in processed data; zero unparseable non-null numeric values; and 7,118 unique quarantined rows. Reference checks found 1,381 truly broken references, 7,937 references to quarantined parent records, and 9,318 row-level reference exceptions. The review also flags 1,731 invalid or ambiguous customer registration dates and 988 negative values in retained data. See `reports/cleaning_validation_report.csv`, `reports/consolidated_quality_report.csv`, and `reports/final_reference_integrity_report.csv`.
 
-Key decisions include:
-
-- Exact duplicate copies were removed from the processed path while raw CSVs were preserved. `orders.csv` had 3,200 removed copies and `payments.csv` had 3,296.
-- Approved missing descriptive categories are labeled `Unknown`; blank discount codes are normalized to the documented no-discount value. Optional or unsupported missing values remain null. No customer or product records were merged based on names alone.
-- Invalid audited dates, suspected sentinel records, and invalid order items were quarantined with reason codes. Registration dates that are invalid or ambiguous remain flagged rather than guessed.
-- Clear category spelling and abbreviation variants are covered by `reports/category_value_mapping.csv`. Broader or potentially meaningful category distinctions remain separate.
-- Negative numeric values still in processed data are flagged. Statistical IQR outliers are summarized and retained unless stronger business evidence establishes an error.
-- Reference checks distinguish formatting-only city identifiers, missing references, references to quarantined parents, and true broken references.
-
-## Verified milestone results
-
-`reports/consolidated_quality_report.csv` reconciles every original row as retained, quarantined, or an explicitly removed exact duplicate.
+The reconciliation report records each original row as retained, quarantined, or an explicitly removed exact duplicate:
 
 | Table | Original rows | Retained | Quarantined | Exact copies removed |
 |---|---:|---:|---:|---:|
@@ -53,31 +45,38 @@ Key decisions include:
 | sellers | 420 | 416 | 4 | 0 |
 | shipping | 151,228 | 149,122 | 2,106 | 0 |
 
-The verified checks in `reports/cleaning_validation_report.csv` show 9/9 tables reconciled, zero remaining exact duplicates, zero duplicate primary-key occurrences, zero unparseable non-null numeric values, and 7,118 unique quarantined rows. The consolidated rejection rows are present locally at `data/rejected/all_reason_coded_rejections.csv`; generated dataset CSVs are intentionally excluded from Git.
+Exact duplicate copies were removed from the processed path while raw data remained unchanged (`orders.csv`: 3,200 copies; `payments.csv`: 3,296). Approved missing descriptive categories use `Unknown`; category and status variants are mapped only where supported. Invalid audited dates, suspected sentinel records, and invalid order items were quarantined with reasons. Negative values and statistical outliers that remain in the retained data are flagged for review rather than silently altered.
 
-The final reference report covers 10 relationships. It identifies 1,381 truly broken references and 7,937 references to quarantined parents, with 9,318 row-level exceptions in `reports/reference_exception_rows.csv`. Formatting-only city ID differences are counted separately. There are also 1,731 invalid or ambiguous customer registration-date values flagged for review and 988 negative values flagged in retained data.
+**Reproducibility limitation:** the repository does not contain all historical transformation steps that produced the existing date, sentinel, and invalid-item quarantine outputs. The processed/rejected files are continuation state. The read-only milestone notebook and `src/finalize_cleaning.py` do not rebuild the complete raw-to-clean pipeline from raw exports; do not treat the finalizer as that pipeline.
 
-These remaining items block foreign-key-constrained loading until dispositioned. The processed CSVs are ready for unconstrained SQL Server landing/staging with nullable fields and the exception reports preserved. Strict date typing also requires a decision for customer registration-date values.
+## SQL Server warehouse
 
-## Data folders and reports
+The SQL scripts target the `NexusMartDW` database. Schema `stg` contains nine text-oriented staging tables corresponding to the source exports. Schema `dw` contains five dimensions—`DimDate`, `DimCustomer`, `DimProduct`, `DimSeller`, and `DimLocation`—and the `FactSales` fact table. The star-schema diagram is in [`reports/Star_Schema_Diagram.png`](reports/Star_Schema_Diagram.png).
 
-- `data/` contains the original challenge exports and `README_DATA.txt`; raw top-level CSV files are ignored by Git and must remain unchanged.
-- `data/processed/` contains the retained cleaned rows. It is local staging input and is ignored by Git.
-- `data/rejected/` contains reason-coded quarantines and review-only flags. These are not interchangeable: flags retain a corresponding row in processed data, while quarantine files contain records excluded from processed tables. This folder is also ignored by Git because row-level outputs can be large or sensitive.
-- `reports/` contains compact baselines, mappings, decisions, reconciliation counts, and audits. Larger row-level candidate/review files are kept out of the proposed commit; they remain available locally.
+`FactSales` is at order-item grain. The SQL scripts reference its order-item/order identifiers, five dimension keys (`DateKey`, `CustomerKey`, `ProductKey`, `SellerKey`, `LocationKey`), `Quantity`, `UnitPrice`, `DiscountAmount`, `MerchandiseSales`, gross/net/cost amounts, `AllocatedShippingFee`, refund/returned amounts, cancellation/return flags, order status, payment method, channel, shipping days, and return date/reason/status. The repository's fact scripts evolve an existing table rather than provide a complete base `CREATE TABLE`; `sql/07_audit_live_fact_schema.sql` queries the actual live columns and constraints. Population and later additions are in `sql/05_populate_fact_sales.sql`, `sql/08_add_fact_sales_measures.sql`, and `sql/09_complete_dim_date.sql`.
 
-## Safe execution notes
+Available scripts include `sql/00_check_sql_server.sql`, `sql/01_create_staging_tables.sql`, `sql/02_validate_staging_data.sql`, `sql/03_create_dimensions.sql`, `sql/04_create_fact_sales.sql`, `sql/05_populate_fact_sales.sql`, `sql/06_quality_checks.sql`, and `sql/07_audit_live_fact_schema.sql` through `sql/11_add_unknown_date_and_relationships.sql`. Review each script and its assumptions before executing against an existing database; some create or alter warehouse objects.
 
-Prerequisites: Python 3 and pandas for the scripts; pandas and Jupyter for the notebooks. Run commands from the repository root.
+Reconciliation is not yet complete. The staged order-items table contains 3,465 rows whose order IDs have no matching staged order; these relate to quarantined parent records and must remain visible in the quality report. The source shipping total also differs from the currently allocated fact shipping total (the current allocation takes the maximum staged shipping fee per order and divides it among that order’s item rows). See the missing-order and shipping reconciliation sections in `sql/06_quality_checks.sql`. These differences must not be presented as perfect source-to-fact coverage.
 
-```powershell
-python src/profile_raw_data.py
-```
+## Airflow validation
 
-This scans only the raw top-level CSVs and writes `reports/raw_profile.json`; it does not modify raw data. The original profiling notebook also reads raw CSVs and writes its baseline/key/date reports.
+The DAG `nexusmart_datathon_pipeline` defines seven sequential tasks: `extract`, `validate_raw`, `clean`, `load_staging`, `build_dimensions`, `build_fact`, and `quality_checks`. A successful Airflow run was observed on October 18, 2026, with all seven tasks succeeding.
 
-`src/finalize_cleaning.py` reads `data/processed/` and `data/rejected/`, then rewrites processed CSVs in place and refreshes final reports/flags. It does not rebuild from raw data. Only run it after confirming the prepared processed/rejected inputs are the intended checkpoint and keeping a recoverable copy. Do not rerun it merely to review documentation. The new `02_data_cleaning_validation.ipynb` reads existing reports only.
+This run validates an already prepared state; it is not a complete end-to-end rebuild. `extract` checks for the nine processed CSVs, `validate_raw` checks their headers and non-empty rows, and `clean` verifies existing processed outputs rather than executing the full cleaning transformation. The remaining tasks verify that staging tables and dimensions already exist and contain data, that `FactSales` is populated and has unique order-item grain, and run warehouse quality checks. The DAG warns on the 3,465 staged order-item rows without a staged order and checks unresolved dimension keys. It does not load or rebuild the warehouse. Detailed per-file read/rejected/loaded accounting and full end-to-end idempotent loading remain improvements.
 
-## Next milestone
+The DAG obtains SQL Server credentials from `NEXUSMART_SQL_SERVER`, `NEXUSMART_SQL_PORT`, `NEXUSMART_SQL_USER`, `NEXUSMART_SQL_PASSWORD`, and `NEXUSMART_SQL_DATABASE`. Set them in the local runtime environment; never commit `.env` or put credentials in this README. The ODBC staging loader and connection check also use `NEXUSMART_SQL_SERVER`, `NEXUSMART_SQL_DATABASE`, and optional `NEXUSMART_SQL_USER` / `NEXUSMART_SQL_PASSWORD` (otherwise they use trusted Windows authentication); `NEXUSMART_SQL_DRIVER` can select the installed ODBC driver.
 
-Resolve or explicitly route the reference exceptions and date flags, then define SQL Server staging tables and load rules. Warehouse/star-schema development follows staging. Airflow orchestration and Power BI reporting come after the warehouse is established.
+### Local Astro/Docker runtime
+
+The working Astro project remains separate at `C:\Users\LENOVO\local_airflow`. The main repository keeps its DAG in `dags/` and the reviewed runtime build files in `airflow/`; generated Docker volumes, container state, local Astro settings, processed data, and secrets are not included. To run locally, install the Astro CLI and Docker, place/copy the repository DAG into `C:\Users\LENOVO\local_airflow\dags\my_dag.py`, make the processed CSVs available at `C:\Users\LENOVO\local_airflow\include\processed\`, set the five environment variables above in that runtime, then run `astro dev start` from `C:\Users\LENOVO\local_airflow`. The DAG reads CSVs inside the container from `/usr/local/airflow/include/processed`.
+
+## Data and report handling
+
+Raw exports, processed/rejected row-level CSVs, temporary logs, Python caches, and large row-level review/audit dumps are local artifacts and are excluded from Git. Compact report summaries, decision logs, mappings, and the star-schema diagram are kept where useful. Do not rerun the finalizer merely to review documentation: it rewrites prepared processed files and refreshes reports.
+
+The raw profiler can be run from the repository root with `python src/profile_raw_data.py`; it reads top-level raw CSVs and writes a profile report. The guarded SQL Server loader is `src/load_staging_data.py`; inspect its connection configuration and confirm all target staging tables are empty before running it. The SQL scripts should be applied deliberately, in dependency order, to the intended database.
+
+## Current status and next milestone
+
+Cleaning evidence is documented, a SQL Server staging/star-schema warehouse has been built, and the seven-task Airflow validation run succeeded. Known reference, missing-order, and shipping reconciliation issues remain under review. Airflow currently verifies existing processed and warehouse data; it does not recreate the full raw-to-warehouse pipeline. The next major milestone is the Power BI dashboard, followed by improving reproducibility, end-to-end idempotent loading, and source-to-fact reconciliation.
